@@ -6,3 +6,19 @@
     /* --font-jakarta: 'Plus Jakarta Sans', sans-serif; */
     --font-sans: 'Plus Jakarta Sans', sans-serif;
 }
+
+/* Slide animation from left */
+.slide-enter-active,
+.slide-leave-active {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.slide-enter-from,
+.slide-leave-to {
+    transform: translateY(-100%);
+}
+
+.slide-enter-to,
+.slide-leave-from {
+    transform: translateY(0);
+}

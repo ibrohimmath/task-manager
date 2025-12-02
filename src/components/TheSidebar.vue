@@ -1,5 +1,5 @@
 <template>
-    <div class="p-8 flex flex-col">
+    <div class="p-8 flex flex-col relative">
         <router-link to="/overview">
             <div class="flex items-center gap-3">
                 <div class="flex items-center h-6 gap-2">
@@ -8,6 +8,7 @@
                 <div class="p-auto text-[#141522] text-3xl font-semibold leading-[4xlpx]">DNX</div>
             </div>
         </router-link>
+        <slot />
         <nav class="mt-12 flex flex-col gap-4">
             <router-link to="/overview">
                 <div class="flex gap-3 py-3 px-8" :class="[route.name == 'overview' ? 'bg-[#F5F5F7] rounded-xl' : '']">
@@ -44,6 +45,42 @@
                 </div>
             </router-link>
         </nav>
+        <div class="relative mt-auto max-w-2xs w-full">
+            <div
+                class="absolute overflow-hidden size-12 rounded-full flex items-center justify-center top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 shadow-[0_3px_24px_2px_#54577A]">
+                <!-- outer blurred glow -->
+                <div class="absolute inset-[-12px] bg-[#141522] rounded-full blur-xl opacity-40"></div>
+
+                <!-- inner white ring + dark circle -->
+                <div class="absolute inset-0 bg-[#141522] border-[4px] border-white rounded-full"></div>
+
+                <span class="text-2xl font-bold text-white z-20">?</span>
+            </div>
+
+            <!-- Actual card -->
+            <div
+                class="relative max-w-2xs w-full h-[35dvh] p-4 rounded-2xl bg-[#141522] text-white overflow-hidden flex text-center flex-col">
+
+                <!-- Top-left quarter circle -->
+                <div class="absolute -top-4 -left-4 w-20 h-20 bg-[#FFFFFF14] rounded-br-full"></div>
+
+                <!-- Bottom-right quarter circle -->
+                <div class="absolute -bottom-4 -right-4 w-20 h-20 bg-[#FFFFFF14] rounded-tl-full"></div>
+
+                <div class="flex-1 flex flex-col items-center justify-center">
+                    <h2 class="text-md font-semibold">Help Center</h2>
+
+                    <p class="mt-2 text-[12px] tracking-tight">
+                        Having Trouble in Learning.<br>
+                        Please contact us for more questions.
+                    </p>
+                </div>
+
+                <button class="mt-auto bg-white text-black font-semibold text-[12px] px-4 py-2 rounded-xl font-medium">
+                    Go To Help Center
+                </button>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -57,15 +94,8 @@ import Category from "@/assets/icons/category.vue";
 import Message from '@/assets/icons/message.vue';
 import Setting from '@/assets/icons/setting.vue';
 import User from '@/assets/icons/user.vue';
-
-import { watch } from 'vue';
-
 import { useRoute } from 'vue-router';
 
 const route = useRoute();
-
-watch(route, (newRoute) => {
-    console.log(route, 'update route');
-}, { immediate: true });
 
 </script>
