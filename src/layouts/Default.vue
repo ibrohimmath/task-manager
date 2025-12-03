@@ -1,52 +1,67 @@
 <template>
-    <main class="flex h-full" :class="{ 'flex-col': width < 1024 }">
+    <main class="flex h-full max-[925px]:flex-col">
         <!-- Sidebar with slide animation -->
         <Transition name="slide">
-            <TheSidebar v-if="width >= 1024 || show" class="w-3xs bg-[#FFFFFF]"
-                :class="{ 'absolute top-0 left-0 w-full h-full z-40 shadow-xl': width < 1024 }">
-                <template v-if="width < 1024 && show">
-                    <button class="absolute top-8 right-8" @click="toggleSidebar">
+            <TheSidebar v-if="width >= 925 || show"
+                class="w-3xs bg-[#FFFFFF] max-[925px]:absolute max-[925px]:top-0 max-[925px]:left-0 max-[925px]:w-full max-[925px]:h-full z-40">
+                <template v-if="width < 925 && show">
+                    <button @click="toggleSidebar">
                         X
                     </button>
                 </template>
             </TheSidebar>
         </Transition>
-        <!-- <TheSidebar class="w-3xs bg-[#FFFFFF]" v-if="width >= 1024 || show" :class="" /> -->
-        <section class="flex-1 flex p-4 flex-col">
-            <!-- NAVBAR / PAGE HEADER -->
-            <header class="w-full p-4 flex items-center" v-if="width >= 1024">
+        <section class="flex-1 flex flex-col border-2 border-solid border-[rgba(245,245,247,1)]">
+            <!-- Mobile -->
+            <header
+                class="w-full py-4 px-6 flex items-center max-[925px]:border-b-2 border-solid border-[rgba(245,245,247,1)]"
+                v-if="width >= 1082">
                 <!-- Default fallback if not provided -->
                 <slot name="navbar">
                     <h1 class="text-xl font-semibold font-jakarta">
                         Title
                     </h1>
                 </slot>
-                <div class="ml-auto">
+                <div class="ml-auto class flex items-center gap-4">
+                    <div class="flex size-12 border-2 border-solid border-[rgba(245,245,247,1)] rounded-full">
+                        <Notification class="m-auto" />
+                    </div>
                     <Avatar :url="'/img/girl.png'" :width="width" />
                 </div>
             </header>
 
-            <header class="p-4" v-else>
+            <!-- Desktop -->
+            <header class="py-4 px-6" v-else>
                 <div class="w-full flex items-center">
-                    <MenuIcon @click="toggleSidebar" />
-                    <Avatar class="ml-auto" :url="'/img/girl.png'" />
+                    <div class="flex size-12 border-2 border-solid border-[rgba(245,245,247,1)] rounded-full"
+                        v-if="width < 925">
+                        <MenuIcon @click="toggleSidebar" class="m-auto" />
+                    </div>
+                    <div class="ml-auto class flex items-center gap-4">
+                        <div class="flex size-12 border-2 border-solid border-[rgba(245,245,247,1)] rounded-full">
+                            <Notification class="m-auto" />
+                        </div>
+                        <Avatar :url="'/img/girl.png'" :width="width" />
+                    </div>
                 </div>
                 <!-- Default fallback if not provided -->
-                <slot name="navbar">
-                    <h1 class="text-xl font-semibold font-jakarta">
-                        Title
-                    </h1>
-                </slot>
+                <div class="mt-4">
+                    <slot name="navbar">
+                        <h1 class="text-xl font-semibold font-jakarta">
+                            Title
+                        </h1>
+                    </slot>
+                </div>
             </header>
 
             <!-- MAIN CONTENT -->
-            <div class="flex-1 p-4 overflow-y-auto">
+            <div class="flex-1 py-4 px-6 overflow-y-auto">
                 <slot />
             </div>
         </section>
 
         <!-- OPTIONAL RIGHT SIDEBAR -->
-        <aside v-if="$slots['sidebar-right']" class="w-64 bg-white border-l border-gray-200 p-4">
+        <aside v-if="$slots['sidebar-right']" class="w-[30dvw] bg-white border-l border-gray-200 p-4">
             <slot name="sidebar-right" />
         </aside>
     </main>
@@ -54,11 +69,15 @@
 
 <script setup lang="ts">
 import MenuIcon from "@/assets/icons/menu.vue";
+import Notification from "@/assets/icons/notification.vue";
+
 import Avatar from '@/components/Avatar.vue';
 import TheSidebar from "@/components/TheSidebar.vue";
 
 import useWindowResize from "@/composables/window";
+
 import { onMounted, ref, watch } from "vue";
+
 const { width } = useWindowResize();
 const show = ref<boolean>(true);
 
@@ -68,13 +87,13 @@ const toggleSidebar = () => {
 };
 
 watch(width, (newW) => {
-    if (newW < 1024) {
+    if (newW < 925) {
         show.value = false;
     }
 });
 
 onMounted(() => {
-    if (width.value < 1024) {
+    if (width.value < 925) {
         show.value = false;
     }
 });

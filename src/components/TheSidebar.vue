@@ -6,10 +6,12 @@
                     <img :src="bookIcon" />
                 </div>
                 <div class="p-auto text-[#141522] text-3xl font-semibold leading-[4xlpx]">DNX</div>
+                <div class="ml-auto flex items-center">
+                    <slot />
+                </div>
             </div>
         </router-link>
-        <slot />
-        <nav class="mt-12 flex flex-col gap-4">
+        <nav class="mt-8 flex flex-col gap-4">
             <router-link to="/overview">
                 <div class="flex gap-3 py-3 px-8" :class="[route.name == 'overview' ? 'bg-[#F5F5F7] rounded-xl' : '']">
                     <Category :isActive="route.name != 'overview'" />
@@ -59,7 +61,7 @@
 
             <!-- Actual card -->
             <div
-                class="relative max-w-2xs w-full h-[35dvh] p-4 rounded-2xl bg-[#141522] text-white overflow-hidden flex text-center flex-col">
+                class="relative max-w-2xs w-full h-[28dvh] p-4 rounded-2xl bg-[#141522] text-white overflow-hidden flex text-center flex-col">
 
                 <!-- Top-left quarter circle -->
                 <div class="absolute -top-4 -left-4 w-20 h-20 bg-[#FFFFFF14] rounded-br-full"></div>
