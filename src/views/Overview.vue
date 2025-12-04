@@ -47,26 +47,35 @@
                         <ArrowRight :is-disabled="currentMentorPage == maxMentorsPage" @click="increaseMentorPage" />
                     </div>
                 </div>
-                <Carousel class="w-full" v-model:page="currentMentorPage" :value="mentorsData" :numVisible="numsVisible"
-                    :numScroll="1" :showNavigators="false" :showIndicators="false" :responsiveOptions="responsiveOptions">
-                    <template #item="slotProps">
-                        <div class="rounded-lg p-6 bg-[rgba(255,255,255,1)] ml-2">
-                            <div class="flex items-center gap-4">
+                <div class="mt-4 w-full overflow-y-hidden">
+                    <Carousel v-model:page="currentMentorPage" :value="mentorsData" :numVisible="numsVisible" :numScroll="1"
+                        :showNavigators="false" :showIndicators="false" :responsiveOptions="responsiveOptions">
+                        <template #item="slotProps">
+                            <div class="rounded-lg bg-[rgba(255,255,255,1)] ml-4 p-6">
                                 <div class="flex items-center gap-4">
-                                    <img :src="slotProps.data.image"
-                                        class="size-[52px] object-contain object-center rounded-full" />
-                                    <div>
-                                        <h1>{{ slotProps.data.name }}</h1>
-                                        <p>{{ slotProps.data.profession }}</p>
+                                    <div class="flex items-center gap-4">
+                                        <img :src="slotProps.data.image"
+                                            class="size-[52px] object-contain object-center rounded-full" />
+                                        <div>
+                                            <h1>{{ slotProps.data.name }}</h1>
+                                            <p>{{ slotProps.data.profession }}</p>
+                                        </div>
+                                    </div>
+                                    <p class="text-sm ml-auto"
+                                        :class="[slotProps.data.isFollowed ? 'text-[rgba(156,156,164,1)]' : 'text-[rgba(84,111,255,1)]']">
+                                        {{ slotProps.data.isFollowed ? "Followed" : "+Follow" }}</p>
+                                </div>
+                                <div class="mt-4 flex items-center">
+                                    <div class="flex items-center gap-2">
+                                        <TaskIcon />
+                                        <p class="font-normal text-sm text-[rgba(20,21,34,1)]">{{ slotProps.data.tasks }}
+                                            Task</p>
                                     </div>
                                 </div>
-                                <p class="text-sm"
-                                    :class="[slotProps.data.isFollowed ? 'text-[rgba(156,156,164,1)]' : 'text-[rgba(84,111,255,1)]']">
-                                    {{ slotProps.data.isFollowed ? "Followed" : "+Follow" }}</p>
                             </div>
-                        </div>
-                    </template>
-                </Carousel>
+                        </template>
+                    </Carousel>
+                </div>
             </div>
         </div>
 
@@ -84,6 +93,7 @@
 import ArrowLeft from "@/assets/icons/ArrowLeft.vue";
 import ArrowRight from "@/assets/icons/ArrowRight.vue";
 import Down from "@/assets/icons/down.vue";
+import TaskIcon from "@/assets/icons/task.vue";
 
 import Chart from "@/components/Chart.vue";
 import CircleProgress from "@/components/CircleProgress.vue";
@@ -173,11 +183,6 @@ const mentorsData = [
 
 const responsiveOptions = ref([
     {
-        breakpoint: '1800px',
-        numVisible: 2,
-        numScroll: 1
-    },
-    {
         breakpoint: '575px',
         numVisible: 1,
         numScroll: 1
@@ -198,3 +203,5 @@ const increaseMentorPage = () => {
     currentMentorPage.value++;
 };
 </script>
+
+<style scoped></style>
