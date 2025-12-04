@@ -1,0 +1,17 @@
+<template>
+    <svg width="9" height="18" viewBox="0 0 9 18" fill="none" xmlns="http://www.w3.org/2000/svg" :disabled="isDisabled">
+        <path d="M7.8475 16.59L1.3275 10.07C0.5575 9.3 0.5575 8.04 1.3275 7.27L7.8475 0.75" :stroke="color"
+            stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+</template>
+<script setup lang="ts">
+import { computed } from 'vue';
+
+const props = defineProps({
+    isDisabled: {
+        type: Boolean,
+        default: false,
+    }
+})
+const color = computed(() => props.isDisabled ? '#54577A' : '#141522');
+</script>

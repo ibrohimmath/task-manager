@@ -55,7 +55,7 @@
             </header>
 
             <!-- MAIN CONTENT -->
-            <div class="flex-1 py-4 px-6 overflow-y-auto">
+            <div class="flex-1 py-4 px-6 overflow-y-auto bg-[rgba(245,245,247,1)]">
                 <slot />
             </div>
         </section>
