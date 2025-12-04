@@ -55,13 +55,15 @@
             </header>
 
             <!-- MAIN CONTENT -->
-            <div class="flex-1 py-4 px-6 overflow-y-auto bg-[rgba(245,245,247,1)] max-w-[calc(70dvw-238px)]">
+            <div
+                class="flex-1 py-4 px-6 overflow-y-auto bg-[rgba(245,245,247,1)] max-w-[calc(70dvw-238px)] max-[925px]:max-w-full">
                 <slot />
             </div>
         </section>
 
         <!-- OPTIONAL RIGHT SIDEBAR -->
-        <aside v-if="$slots['sidebar-right']" class="w-[30dvw] bg-white border-l border-gray-200 p-4">
+        <aside v-if="$slots['sidebar-right']"
+            class="w-[30dvw] max-[925px]:w-full bg-[rgba(245,245,247,1)] border-l border-gray-200 p-5">
             <slot name="sidebar-right" />
         </aside>
     </main>

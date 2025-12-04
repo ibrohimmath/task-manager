@@ -6,6 +6,7 @@ import Carousel from 'primevue/carousel';
 import PrimeVue from 'primevue/config';
 import 'primevue/resources/primevue.min.css';
 import 'primevue/resources/themes/lara-light-blue/theme.css';
+import Slider from 'primevue/slider';
 import App from './App.vue';
 import router from './router';
 
@@ -18,5 +19,6 @@ app.use(router);
 app.use(PrimeVue);
 
 app.component('Carousel', Carousel);
+app.component('Slider', Slider);
 
 app.mount('#app')

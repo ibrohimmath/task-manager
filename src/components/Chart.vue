@@ -2,7 +2,7 @@
     <div class="w-full max-w-4xl mx-auto">
         <div class="bg-white rounded-3xl">
             <!-- Chart Container -->
-            <div class="relative h-46 bg-white rounded-2xl p-2">
+            <div class="relative h-38 bg-white rounded-2xl p-2">
                 <div ref="chartContainer"></div>
             </div>
 
@@ -45,7 +45,7 @@ const totalTasks = computed(() => {
 const chartOptions: ApexOptions = {
     chart: {
         type: 'line',
-        height: 180,
+        height: 150,
         toolbar: {
             show: false
         },
@@ -111,8 +111,8 @@ const chartOptions: ApexOptions = {
     },
     yaxis: {
         min: 0,
-        max: 3,
-        tickAmount: 3,
+        max: 2,
+        tickAmount: 2,
         labels: {
             style: {
                 colors: '#6b7280',
