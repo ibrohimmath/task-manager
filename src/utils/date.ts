@@ -54,6 +54,6 @@ function makePlural(amount: number) {
 
 export {
 
-    addDays, calculateDiff, dayNames, displayTime, getRemainTime, monthNames
+    addDays, dayNames, displayTime, getRemainTime, monthNames
 };
 
