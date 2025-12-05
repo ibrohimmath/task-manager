@@ -107,9 +107,8 @@
                             <div class="mt-3 flex items-center justify-between gap-4">
                                 <div class="flex items-center gap-2">
                                     <ClockIcon />
-                                    <p class="text-md font-normal text-[rgba(20,21,34,1)]">{{ Math.floor(Math.max(0, new
-                                        Date(slotProps.data.expire).getTime() - Date.now()) /
-                                        86400000) }} days left</p>
+                                    <p class="text-md font-normal text-[rgba(20,21,34,1)]">{{ getRemainTime(new
+                                        Date(slotProps.data.expire), new Date()) }} left</p>
                                 </div>
                                 <div class="flex items-center">
                                     <Avatar :size="35" :width="width" :url="'/img/girl.png'" :key="slotProps.data.title + i"
@@ -124,6 +123,56 @@
 
         <template #sidebar-right>
             <Calendar />
+            <div class="mt-4 bg-white rounded-lg p-6 w-full max-w-120 mx-auto">
+                <div class="flex items-center gap-4 justify-between">
+                    <p class="text-md fond-semibold text-[rgba(20,21,34,1)]">Task Today</p>
+                    <MoreIcon />
+                </div>
+                <img src="/img/task.png" class="mt-4 w-full" />
+                <p class="mt-6 text-md font-semibold text-[rgba(20,21,34,1)]">Creating Awesome Mobile Apps</p>
+                <p class="mt-1 text-sm font-normal text-[rgba(84,87,122,1)]">UI/UX Designer</p>
+                <div class="mt-4 flex items-center gap-4 justify-between">
+                    <p class="font-normal text-md text-[rgba(20,21,34,1)]">Progress</p>
+                    <p class="font-medium text-md text-[rgba(84,111,255,1)]">90 %</p>
+                </div>
+                <Slider :model-value="90" class="mt-2 !bg-[rgba(186,200,255,1)]" />
+                <div class="mt-3 flex items-center justify-between gap-4">
+                    <div class="flex items-center gap-2">
+                        <ClockIcon />
+                        <p class="text-md font-normal text-[rgba(20,21,34,1)]">{{ getRemainTime(new
+                            Date('2025-12-4 23:00'), new Date(), 'hour') }} left</p>
+                    </div>
+                    <div class="flex items-center">
+                        <Avatar :size="35" :width="width" :url="'/img/girl.png'" :key="i" v-for="i in 5" class="-ml-4" />
+                    </div>
+                </div>
+                <hr class="my-4 w-full h-1 bg-[rgba(245,245,247,1)]" />
+                <div class="flex items-center gap-4 justify-between">
+                    <p class="text-md font-semibold text-[rgba(20,21,34,1)]">Detail Task</p>
+                    <p class="text-sm font-normal text-[rgba(84,87,122,1)]">UI/UX Designer</p>
+                </div>
+                <div class="mt-4 flex items-center gap-4">
+                    <div
+                        class="flex items-center justify-center rounded-lg size-9 bg-[rgba(245,245,247,1)] text-sm font-semibold text-[rgba(20,21,34,1)]">
+                        1</div>
+                    <p class="text-sm font-medium">Understanding the tools in Figma</p>
+                </div>
+                <div class="mt-4 flex items-center gap-4">
+                    <div
+                        class="flex items-center justify-center rounded-lg size-9 bg-[rgba(245,245,247,1)] text-sm font-semibold text-[rgba(20,21,34,1)]">
+                        2</div>
+                    <p class="text-sm font-medium">Understand the basics of making designs</p>
+                </div>
+                <div class="mt-4 flex items-center gap-4">
+                    <div
+                        class="flex items-center justify-center rounded-lg size-9 bg-[rgba(245,245,247,1)] text-sm font-semibold text-[rgba(20,21,34,1)]">
+                        3</div>
+                    <p class="text-sm font-medium">Design a mobile application with figma</p>
+                </div>
+                <button
+                    class="w-full mt-4 p-4 bg-[rgba(84,111,255,1)] rounded-lg text-sm text-[rgba(255,255,255,1)] font-semibold">Go
+                    To Detail</button>
+            </div>
         </template>
     </Default>
 </template>
@@ -133,6 +182,7 @@ import ArrowLeft from "@/assets/icons/ArrowLeft.vue";
 import ArrowRight from "@/assets/icons/ArrowRight.vue";
 import ClockIcon from "@/assets/icons/clock.vue";
 import Down from "@/assets/icons/down.vue";
+import MoreIcon from "@/assets/icons/more.vue";
 import StarIcon from "@/assets/icons/star.vue";
 import TaskIcon from "@/assets/icons/task.vue";
 
@@ -145,6 +195,7 @@ import Default from '@/layouts/Default.vue';
 
 import useWindowResize from "@/composables/window";
 
+import { getRemainTime } from "@/utils/date";
 import mentorsData from "@/utils/mentors";
 import tasksData from "@/utils/tasks";
 

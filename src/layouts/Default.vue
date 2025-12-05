@@ -63,7 +63,7 @@
 
         <!-- OPTIONAL RIGHT SIDEBAR -->
         <aside v-if="$slots['sidebar-right']"
-            class="w-[30dvw] max-[925px]:w-full bg-[rgba(245,245,247,1)] border-l border-gray-200 p-5">
+            class="w-[30dvw] max-[925px]:w-full bg-[rgba(245,245,247,1)] border-l border-gray-200 p-5 overflow-y-auto">
             <slot name="sidebar-right" />
         </aside>
     </main>
