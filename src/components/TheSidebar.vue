@@ -1,16 +1,18 @@
 <template>
     <div class="p-8 flex flex-col relative">
-        <router-link to="/overview">
-            <div class="flex items-center gap-3">
-                <div class="flex items-center h-6 gap-2">
-                    <img :src="bookIcon" />
+        <div class="flex items-center gap-3">
+            <router-link to="/overview">
+                <div class="flex items-center gap-3">
+                    <div class="flex items-center h-6 gap-2">
+                        <img :src="bookIcon" />
+                    </div>
+                    <div class="p-auto text-[#141522] text-3xl font-semibold leading-[4xlpx]">DNX</div>
                 </div>
-                <div class="p-auto text-[#141522] text-3xl font-semibold leading-[4xlpx]">DNX</div>
-                <div class="ml-auto flex items-center">
-                    <slot />
-                </div>
+            </router-link>
+            <div class="ml-auto flex items-center">
+                <slot />
             </div>
-        </router-link>
+        </div>
         <nav class="mt-8 flex flex-col gap-4">
             <router-link to="/overview">
                 <div class="flex gap-3 py-3 px-8" :class="[route.name == 'overview' ? 'bg-[#F5F5F7] rounded-xl' : '']">

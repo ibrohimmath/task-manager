@@ -27,7 +27,7 @@
                     </div>
                 </div>
                 <div
-                    class="col-span-4 ml-auto max-[1230px]:mx-auto p-4 rounded-lg max-[1630px]:col-span-3 max-[1410px]:col-span-2 h-full w-full max-[1230px]:h-60 max-w-[600px] bg-[rgba(245,245,247,1)]">
+                    class="col-span-4 ml-auto max-[1230px]:mx-auto p-4 rounded-lg max-[1630px]:col-span-3 max-[1410px]:col-span-2 h-full w-full max-[1230px]:h-60 bg-[rgba(245,245,247,1)]">
                     <div class="flex items-center justify-between">
                         <h1 class="text-xl font-semibold mb-4">Activity</h1>
                         <div class="flex items-center gap-4">
@@ -237,7 +237,7 @@ const increaseMentorPage = () => {
 
 const currentTaskPage = ref<number>(0);
 const taskNumsVisible = ref<number>(2);
-const maxTasksPage = ref<number>(Math.ceil(mentorsData.length / mentorNumsVisible.value));
+const maxTasksPage = ref<number>(Math.ceil(tasksData.length / taskNumsVisible.value));
 
 const decreaseTaskPage = () => {
     if (currentTaskPage.value == 0) return;
