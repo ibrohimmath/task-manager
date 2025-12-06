@@ -21,8 +21,9 @@
                         Overview</p>
                 </div>
             </router-link>
-            <router-link to="/task">
-                <div class="flex gap-3 py-3 px-8" :class="[route.name == 'task' ? 'bg-[#F5F5F7] rounded-xl' : '']">
+            <router-link to="/tasks">
+                <div class="flex gap-3 py-3 px-8"
+                    :class="[route.name == 'task' || route.name == 'tasks' ? 'bg-[#F5F5F7] rounded-xl' : '']">
                     <Book :isActive="route.name != 'task'" />
                     <p class="font-semibold" :class="[route.name != 'task' ? 'text-[#8E92BC]' : 'text-[#141522]']">Task</p>
                 </div>

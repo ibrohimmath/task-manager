@@ -13,9 +13,14 @@ const router = createRouter({
       component: () => import("@/views/Overview.vue"),
     },
     {
-      path: "/task",
-      name: "task",
+      path: "/tasks",
+      name: "tasks",
       component: () => import("@/views/Task.vue"),
+    },
+    {
+      path: "/task/:id",
+      name: "task",
+      component: () => import("@/views/TaskDetail.vue"),
     },
     {
       path: "/mentors",
@@ -39,4 +44,4 @@ const router = createRouter({
 
 // });
 
-export default router
+export default router;

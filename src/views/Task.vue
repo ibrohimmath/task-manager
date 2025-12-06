@@ -12,7 +12,7 @@
             <div class="flex items-center gap-4">
                 <div
                     class="w-[30dvw] max-[800px]:w-[60dvw] flex items-center gap-4 border-2 border-solid border-[rgba(245,245,247,1)] rounded-lg py-2 px-4">
-                    <input @keyup.enter="searchTask" placeholder="Search Task"
+                    <input v-model.trim="taskSearch" @keyup.enter="searchTask" placeholder="Search Task"
                         class="outline-none w-full placeholder-[rgba(84,87,122,1)] text-[rgba(84,87,122,1)]" />
                     <SearchIcon class="ml-auto" @click="searchTask" />
                 </div>
@@ -55,11 +55,11 @@
                             @click="increaseLimitTaskPage" />
                     </div>
                 </div>
-                <Carousel class="mt-4" v-model:page="currentLimitTaskPage" :value="limitTasks"
+                <Carousel class="mt-4" v-model:page="currentLimitTaskPage" :value="limitTasksFiltered"
                     :numVisible="limitTaskNumsVisible" :numScroll="1" :showNavigators="false" :showIndicators="false"
                     :responsiveOptions="responsiveOptions" containerClass="gap-2">
                     <template #item="slotProps">
-                        <div class="rounded-lg bg-[rgba(255,255,255,1)] p-4 m-2">
+                        <div class="rounded-lg bg-[rgba(255,255,255,1)] p-4 m-2" @click="openTask(slotProps.data.id)">
                             <img :src="slotProps.data.image" class="w-full max-h-[20dvh]" />
                             <p class="mt-4 font-semibold text-md text-[rgba(20,21,34,1)]">{{ slotProps.data.title }}
                             </p>
@@ -98,7 +98,7 @@
                     :numScroll="1" :showNavigators="false" :showIndicators="false" :responsiveOptions="responsiveOptions"
                     containerClass="gap-2">
                     <template #item="slotProps">
-                        <div class="rounded-lg bg-[rgba(255,255,255,1)] p-4 m-2">
+                        <div class="rounded-lg bg-[rgba(255,255,255,1)] p-4 m-2" @click="openTask(slotProps.data.id)">
                             <img :src="slotProps.data.image" class="w-full max-h-[20dvh]" />
                             <p class="mt-4 font-semibold text-md text-[rgba(20,21,34,1)]">{{ slotProps.data.title }}
                             </p>
@@ -145,10 +145,21 @@ import tasksData from "@/utils/tasks";
 
 import useWindowResize from "@/composables/window";
 
-import { ref } from "vue";
+import router from "@/router";
+import { computed, ref } from "vue";
 
 const { width } = useWindowResize();
 
+interface Task {
+    id: number;
+    title: string;
+    tag: string;
+    progress: number;
+    expire: string;
+    image: string;
+}
+
+// Static data
 const limitTasks = tasksData.filter(t => {
     const diffSeconds = (Date.now() - new Date(t.expire).getTime()) / 1000;
     return diffSeconds <= 3600;
@@ -159,15 +170,23 @@ const newTasks = tasksData.filter(t => {
     return diffSeconds > 3600;
 });
 
+// Filter state
 const showFilter = ref<boolean>(false);
+const taskSearch = ref<string>('');
 
+// Limit Tasks
 const currentLimitTaskPage = ref<number>(0);
 const limitTaskNumsVisible = ref<number>(3);
-const maxLimitTasksPage = ref<number>(Math.ceil((limitTasks?.length ?? 0) / limitTaskNumsVisible.value));
+const limitTasksFiltered = ref<Array<Task>>(limitTasks);
 
+const maxLimitTasksPage = computed(() => Math.ceil((limitTasksFiltered.value?.length ?? 0) / limitTaskNumsVisible.value));
+
+// New Tasks
 const currentNewTaskPage = ref<number>(0);
 const newTaskNumsVisible = ref<number>(3);
-const maxNewTasksPage = ref<number>(Math.ceil((newTasks?.length ?? 0) / newTaskNumsVisible.value));
+const newTasksFiltered = ref<Array<Task>>(newTasks);
+
+const maxNewTasksPage = computed(() => Math.ceil((newTasksFiltered.value?.length ?? 0) / newTaskNumsVisible.value));
 
 const responsiveOptions = ref([
     {
@@ -208,7 +227,23 @@ const increaseNewTaskPage = () => {
 };
 
 const searchTask = () => {
-    console.log("Tasks search...");
+    let id;
+
+    clearTimeout(id);
+    id = setTimeout(() => {
+        if (taskSearch.value == '') {
+            limitTasksFiltered.value = limitTasks;
+            newTasksFiltered.value = newTasks;
+            return;
+        }
+
+        limitTasksFiltered.value = limitTasks.filter(t => (t.title + ' ' + t.tag).toLowerCase().includes(taskSearch.value));
+        newTasksFiltered.value = newTasks.filter(t => (t.title + ' ' + t.tag).toLowerCase().includes(taskSearch.value));
+    }, 500);
+};
+
+const openTask = (id: number) => {
+    router.push({ name: 'task', params: { id } });
 };
 
 </script>
