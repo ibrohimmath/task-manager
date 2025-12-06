@@ -513,7 +513,7 @@ input[type="range"]::-moz-range-progress {
             </div>
         </template>
 
-        <div class="w-full grid grid-cols-10 gap-4">
+        <div class="w-full grid grid-cols-10 gap-6 max-[790px]:grid-cols-1">
             <div class="col-span-6 bg-[rgba(255,255,255,1)] rounded-lg">
                 <!-- Black placeholder for screenmirror mode -->
                 <div v-if="videoObj.screenmirror"
@@ -577,6 +577,60 @@ input[type="range"]::-moz-range-progress {
                     </Transition>
                 </div>
 
+                <div class="p-4">
+                    <h1 class="font-semibold text-3xl">{{ task.title }}</h1>
+                    <div class="mt-4 flex gap-4">
+                        <p class="text-sm font-medium text[rgba(84,87,122,1)]">
+                            {{ task.tag }}
+                        </p>
+                        <div class="h-6 bg-[rgba(223,223,223,1)] border-[1px] border-solid border-[[rgba(223,223,223,1)]]">
+                        </div>
+                        <p class="font-medium text-sm text-[rgba(4,164,244,1)]">+Get Mentors</p>
+                    </div>
+                    <div class="mt-4 flex items-center gap-6">
+                        <p class="flex items-center gap-2">
+                            <StudentsIcon />
+                            200 students involved
+                        </p>
+                        <p class="flex items-center gap-2">
+                            <ClockIcon />
+                            {{ getRemainTime(new Date(task.expire), new Date()) }}
+                        </p>
+                    </div>
+                    <h1 class="mt-4 font-semibold text-2xl">Description</h1>
+                    <p class="mt-4 text-justify text-sm leading-6 font-light">Follow the video tutorial above. Understand
+                        how to use each tool in the
+                        Figma
+                        application. Also learn how to make a good and correct design. Starting from spacing, typography,
+                        content, and many other design hierarchies. Then try to make it yourself with your imagination and
+                        inspiration.</p>
+                    <h1 class="mt-4 font-semibold text-2xl">Essence of Assessment</h1>
+                    <div class="mt-4 flex items-center gap-4">
+                        <div class="size-6 bg-[rgba(84,111,255,1)] flex justify-center items-center rounded-full">
+                            <TickIcon />
+                        </div>
+                        <p class="font-light text-sm">Understanding the tools in Figma</p>
+                    </div>
+                    <div class="mt-4 flex items-center gap-4">
+                        <div class="size-6 bg-[rgba(84,111,255,1)] flex justify-center items-center rounded-full">
+                            <TickIcon />
+                        </div>
+                        <p class="font-light text-sm">Understand the basics of making designs</p>
+                    </div>
+                    <div class="mt-4 flex items-center gap-4">
+                        <div class="size-6 bg-[rgba(84,111,255,1)] flex justify-center items-center rounded-full">
+                            <TickIcon />
+                        </div>
+                        <p class="font-light text-sm">Designing a mobile application using figma</p>
+                    </div>
+                    <div class="mt-4 flex items-center gap-4">
+                        <div class="size-6 bg-[rgba(84,111,255,1)] flex justify-center items-center rounded-full">
+                            <TickIcon />
+                        </div>
+                        <p class="font-light text-sm">Presenting the design flow</p>
+                    </div>
+                </div>
+
                 <!-- Picture-in-picture (screenmirror) video -->
                 <div v-if="videoObj.screenmirror" @mouseenter="showControls = true" @mouseleave="hideControlsWithDelay"
                     class="z-70 fixed right-4 bottom-4 w-120 h-80 bg-black rounded-lg shadow-2xl"
@@ -630,14 +684,63 @@ input[type="range"]::-moz-range-progress {
                     </Transition>
                 </div>
             </div>
-            <div class="h-30 col-span-4 bg-[rgba(255,255,255,1)] rounded-lg">
+            <div class="h-fit col-span-4 bg-[rgba(255,255,255,1)] rounded-lg p-6">
+                <p class="font-semibold text-sm">Assigned Assignments</p>
+                <h1 class="mt-6 font-semibold text-3xl">{{ task.title }}</h1>
+                <p class="mt-2 text-sm font-medium text[rgba(84,87,122,1)]">
+                    {{ task.tag }}
+                </p>
+                <h1 class="mt-6 font-semibold text-xl">Detail Student</h1>
+                <div class="mt-4 flex items-center gap-4 justify-between">
+                    <p class="font-normal text-sm text-[rgba(84,87,122,1)]">Student's name</p>
+                    <h2 class="font-semibold text-sm text-[rgba(20,21,34,1)]">Dennis Nzioki</h2>
+                </div>
+                <div class="mt-4 flex items-center gap-4 justify-between">
+                    <p class="font-normal text-sm text-[rgba(84,87,122,1)]">Student Class</p>
+                    <h2 class="font-semibold text-sm text-[rgba(20,21,34,1)]">MP2</h2>
+                </div>
+                <div class="mt-4 flex items-center gap-4 justify-between">
+                    <p class="font-normal text-sm text-[rgba(84,87,122,1)]">Student number</p>
+                    <h2 class="font-semibold text-sm text-[rgba(20,21,34,1)]">10</h2>
+                </div>
+                <h1 class="mt-6 font-semibold text-xl">File Task</h1>
+                <div class="mt-4 flex items-center gap-4 justify-between">
+                    <p class="font-normal text-sm text-[rgba(84,87,122,1)]">Last Modified</p>
+                    <h2 class="font-semibold text-sm text-[rgba(20,21,34,1)]">1 July 2022</h2>
+                </div>
+                <div class="mt-4 flex items-center gap-4 justify-between">
+                    <p class="font-normal text-sm text-[rgba(84,87,122,1)]">File submissions</p>
+                </div>
+                <div class="mt-4 h-40 border-dashed border-2 border-[rgba(84,111,255,1)] flex items-center justify-center rounded-lg cursor-pointer hover:bg-[rgba(84,111,255,0.05)] transition-colors"
+                    @click="fileRef?.click()" @dragover.prevent="isDragging = true" @dragleave.prevent="isDragging = false"
+                    @drop.prevent="handleFileDrop" :class="{ 'bg-[rgba(84,111,255,0.1)]': isDragging }">
+                    <div class="flex flex-col items-center gap-2 p-4">
+                        <FileIcon />
+                        <p class="text-sm text-[rgba(84,87,122,1)]">
+                            {{ fileName || 'Click to browse or drag file here' }}
+                        </p>
+                    </div>
+                    <input ref="fileRef" type="file" class="hidden" @change="handleFileChange" />
+                </div>
+                <p class="mt-4 text-xs text-[rgba(84,87,122,1)]">
+                    {{ fileName ? `Selected: ${fileName}` : '*drag or browse from device' }}
+                </p>
+
+                <!-- <div class="mt-4 h-40 border-dashed border-2 border-[rgba(84,111,255,1)] flex items-center justify-center rounded-lg"
+                    @click="fileRef.input()">
+                    <FileIcon />
+                    <input ref="fileRef" type="file" class="hidden" />
+                </div>
+                <p class="mt-4 text-xs text-[rgba(84,87,122,1)]">{{ fileName || "*drag or browser from device" }}</p> -->
             </div>
         </div>
     </Default>
 </template>
 
 <script setup lang="ts">
+import ClockIcon from "@/assets/icons/clock.vue";
 import ConfigIcon from "@/assets/icons/config.vue";
+import FileIcon from "@/assets/icons/file.vue";
 import MaximizeIcon from "@/assets/icons/maximize.vue";
 import PatternIcon from "@/assets/icons/pattern.vue";
 import PlayIcon from "@/assets/icons/play_video.vue";
@@ -645,21 +748,22 @@ import ScreenMirrorIcon from "@/assets/icons/screenmirror.vue";
 import SearchIcon from '@/assets/icons/search.vue';
 import SortIcon from "@/assets/icons/sort.vue";
 import StopIcon from "@/assets/icons/stop_video.vue";
+import StudentsIcon from "@/assets/icons/students.vue";
+import TickIcon from "@/assets/icons/tick.vue";
 import VolumeIcon from "@/assets/icons/volume-high.vue";
-// Import mute icon if you have one, otherwise we'll use the same icon
-// import VolumeMuteIcon from "@/assets/icons/volume-mute.vue";
+import VolumeMuteIcon from "@/assets/icons/volume-slash.vue";
 
-// Fallback if you don't have a mute icon
-const VolumeMuteIcon = VolumeIcon;
+import tasksData from "@/utils/tasks";
 
 import Default from '@/layouts/Default.vue';
-import { displayVideoTime } from "@/utils/date";
+import { displayVideoTime, getRemainTime } from "@/utils/date";
 
 import { reactive, ref, watch } from "vue";
 
 import { onMounted, onUnmounted } from 'vue';
 import { useRoute } from 'vue-router';
 
+// Interfaces
 interface VideoObject {
     playing: boolean;
     progress: number;
@@ -671,12 +775,38 @@ interface VideoObject {
     previousVolume: number;
 }
 
+interface Task {
+    id: number;
+    title: string;
+    tag: string;
+    progress: number;
+    expire: string;
+    image: string;
+}
+
+// Route
 const route = useRoute();
 
 // Filter state
 const showFilter = ref<boolean>(false);
 const taskSearch = ref<string>('');
 
+// File
+const fileRef = ref<any>();
+const fileName = ref<string>('');
+const isDragging = ref<boolean>(false);
+
+// Task
+let task = reactive<Task>({
+    id: 0,
+    title: "Nothing",
+    tag: "Web",
+    progress: 90,
+    expire: "2025-12-05 12:59",
+    image: "/img/task.png",
+});
+
+// Video
 const videoRef = ref<HTMLVideoElement>();
 const pipVideoRef = ref<HTMLVideoElement>();
 const isSeeking = ref<boolean>(false);
@@ -835,6 +965,51 @@ const onSeeked = () => {
     isSeeking.value = false;
 };
 
+// File handling functions
+const handleFileChange = (event: Event) => {
+    const target = event.target as HTMLInputElement;
+    const files = target.files;
+
+    if (files && files.length > 0) {
+        const file = files[0];
+        fileName.value = file.name;
+        console.log('Selected file:', file);
+
+        // You can add additional file handling here
+        // For example, upload the file or read its contents
+    }
+};
+
+const handleFileDrop = (event: DragEvent) => {
+    isDragging.value = false;
+
+    const files = event.dataTransfer?.files;
+
+    if (files && files.length > 0) {
+        const file = files[0];
+        fileName.value = file?.name ?? '';
+        console.log('Dropped file:', file);
+
+        // If you want to also update the input element with the dropped file
+        // Note: This is read-only, but useful for form submission
+        if (fileRef.value) {
+            const dataTransfer = new DataTransfer();
+            dataTransfer.items.add(file);
+            fileRef.value.files = dataTransfer.files;
+        }
+
+        // You can add additional file handling here
+    }
+};
+
+// Optional: Clear file selection
+const clearFile = () => {
+    fileName.value = '';
+    if (fileRef.value) {
+        fileRef.value.value = '';
+    }
+};
+
 // Watch for screenmirror changes to sync video state
 watch(() => videoObj.screenmirror, (newVal) => {
     if (newVal && pipVideoRef.value && videoRef.value) {
@@ -856,12 +1031,14 @@ watch(() => videoObj.screenmirror, (newVal) => {
     }
 });
 
-const taskId = route.redirectedFrom;
+watch(() => route.params.id, (newId) => {
+    const idNum = +(newId as string);
+    if (tasksData.findIndex(t => t.id == idNum) != -1) {
+        task = tasksData.find(t => t.id == idNum)!;
+    }
+}, { immediate: true });
 
 onMounted(() => {
-    console.log(route, "route");
-    console.log(videoRef.value, "video obj");
-
     // Set initial volume
     if (videoRef.value) {
         videoRef.value.volume = videoObj.volume;
