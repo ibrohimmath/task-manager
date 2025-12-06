@@ -972,7 +972,7 @@ const handleFileChange = (event: Event) => {
 
     if (files && files.length > 0) {
         const file = files[0];
-        fileName.value = file.name;
+        fileName.value = file?.name ?? '';
         console.log('Selected file:', file);
 
         // You can add additional file handling here
@@ -994,7 +994,7 @@ const handleFileDrop = (event: DragEvent) => {
         // Note: This is read-only, but useful for form submission
         if (fileRef.value) {
             const dataTransfer = new DataTransfer();
-            dataTransfer.items.add(file);
+            dataTransfer.items.add(file!);
             fileRef.value.files = dataTransfer.files;
         }
 
