@@ -57,7 +57,8 @@
                 <div v-show="!videoObj.screenmirror" @mouseenter="showControls = true" @mouseleave="hideControlsWithDelay"
                     :class="videoObj.maximize ? 'z-70 fixed top-0 left-0 w-dvw h-dvh bg-black' : 'relative'"
                     @mousemove="showControls = true; resetHideTimer()">
-                    <video ref="videoRef" class="rounded-lg cursor-pointer w-full object-contain"
+                    <video ref="videoRef"
+                        class="rounded-lg cursor-pointer w-full object-center object-cover max-[925px]:object-contain"
                         poster="/img/task_preview.jpg" :class="[videoObj.maximize ? 'h-dvh' : 'h-80']"
                         @timeupdate="updateProgress" @loadedmetadata="onVideoLoaded" @seeking="onSeeking" @seeked="onSeeked"
                         @click="togglePlayPause">
@@ -174,7 +175,7 @@
 
                 <!-- Picture-in-picture (screenmirror) video -->
                 <div v-if="videoObj.screenmirror" @mouseenter="showControls = true" @mouseleave="hideControlsWithDelay"
-                    class="z-70 fixed right-4 bottom-4 w-[40dvw] max-[1500px]:w-[60dvw] max-[925px]:w-[95dvw] h-[35dvh] bg-black rounded-lg shadow-2xl"
+                    class="z-70 fixed right-4 bottom-4 w-[40dvw] max-[1500px]:w-[60dvw] max-[925px]:left-4 max-[925px]:w-[calc(100dvw-32px)] h-[35dvh] bg-black rounded-lg shadow-2xl"
                     @mousemove="showControls = true; resetHideTimer()">
                     <video ref="pipVideoRef" class="rounded-lg cursor-pointer w-full h-full object-contain"
                         @timeupdate="updateProgress" @loadedmetadata="onVideoLoaded" @click="togglePlayPause"
