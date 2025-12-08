@@ -57,8 +57,8 @@
                 <div v-show="!videoObj.screenmirror" @mouseenter="showControls = true" @mouseleave="hideControlsWithDelay"
                     :class="videoObj.maximize ? 'z-70 fixed top-0 left-0 w-dvw h-dvh bg-black' : 'relative'"
                     @mousemove="showControls = true; resetHideTimer()">
-                    <video ref="videoRef" class="object-cover object-center rounded-lg cursor-pointer w-full"
-                        poster="/img/task_preview.jpg" :class="[videoObj.maximize ? 'w-full h-dvh' : 'w-full h-80']"
+                    <video ref="videoRef" class="rounded-lg cursor-pointer w-full object-contain"
+                        poster="/img/task_preview.jpg" :class="[videoObj.maximize ? 'h-dvh' : 'h-80']"
                         @timeupdate="updateProgress" @loadedmetadata="onVideoLoaded" @seeking="onSeeking" @seeked="onSeeked"
                         @click="togglePlayPause">
                         <source src="/video/tcp_vs_udp.mp4" type="video/mp4" />
@@ -176,7 +176,7 @@
                 <div v-if="videoObj.screenmirror" @mouseenter="showControls = true" @mouseleave="hideControlsWithDelay"
                     class="z-70 fixed right-4 bottom-4 w-[40dvw] max-[1500px]:w-[60dvw] max-[925px]:w-[95dvw] h-[35dvh] bg-black rounded-lg shadow-2xl"
                     @mousemove="showControls = true; resetHideTimer()">
-                    <video ref="pipVideoRef" class="object-cover object-center rounded-lg cursor-pointer w-full h-full"
+                    <video ref="pipVideoRef" class="rounded-lg cursor-pointer w-full h-full object-contain"
                         @timeupdate="updateProgress" @loadedmetadata="onVideoLoaded" @click="togglePlayPause"
                         @seeked="onSeeked">
                         <source src="/video/tcp_vs_udp.mp4" type="video/mp4" />
@@ -772,4 +772,5 @@ input[type="range"]::-moz-range-progress {
     display: flex;
     align-items: center;
     position: relative;
-}</style>
+}
+</style>
