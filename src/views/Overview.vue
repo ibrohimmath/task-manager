@@ -5,7 +5,7 @@
                 <h1 class="text-2xl font-semibold">
                     Hi, Dennis Nzioki
                 </h1>
-                <p class="text-md font-normal mt-2 text-[rgba(84,87,122,1)]">Let's finish your task today!</p>
+                <p class="text-md text-base font-medium mt-2 text-[rgba(84,87,122,1)]">Let's finish your task today!</p>
             </div>
         </template>
 
@@ -146,7 +146,7 @@
                         <Avatar :size="35" :width="width" :url="'/img/girl.png'" :key="i" v-for="i in 5" class="-ml-4" />
                     </div>
                 </div>
-                <hr class="my-4 w-full h-1 bg-[rgba(245,245,247,1)]" />
+                <hr class="my-4 w-full border-1 border-solid border-[rgba(245,245,247,1)]" />
                 <div class="flex items-center gap-4 justify-between">
                     <p class="text-md font-semibold text-[rgba(20,21,34,1)]">Detail Task</p>
                     <p class="text-sm font-normal text-[rgba(84,87,122,1)]">UI/UX Designer</p>
@@ -170,7 +170,7 @@
                     <p class="text-sm font-medium">Design a mobile application with figma</p>
                 </div>
                 <button
-                    class="w-full mt-4 p-4 bg-[rgba(84,111,255,1)] rounded-lg text-sm text-[rgba(255,255,255,1)] font-semibold">Go
+                    class="w-full mt-15 p-4 bg-[rgba(84,111,255,1)] rounded-[10px] text-sm text-[rgba(255,255,255,1)] font-semibold">Go
                     To Detail</button>
             </div>
         </template>

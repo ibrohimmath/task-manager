@@ -6,7 +6,7 @@
                     <div class="flex items-center h-6 gap-2">
                         <img :src="bookIcon" />
                     </div>
-                    <div class="p-auto text-[#141522] text-3xl font-semibold leading-[4xlpx]">DNX</div>
+                    <div class="p-auto text-[#141522] text-[32px] font-semibold leading-[4xlpx]">DNX</div>
                 </div>
             </router-link>
             <div class="ml-auto flex items-center">
@@ -17,7 +17,8 @@
             <router-link to="/overview">
                 <div class="flex gap-3 py-3 px-8" :class="[route.name == 'overview' ? 'bg-[#F5F5F7] rounded-xl' : '']">
                     <Category :isActive="route.name != 'overview'" />
-                    <p class="font-semibold" :class="[route.name != 'overview' ? 'text-[#8E92BC]' : 'text-[#141522]']">
+                    <p class="font-semibold text-base"
+                        :class="[route.name != 'overview' ? 'text-[#8E92BC]' : 'text-[#141522]']">
                         Overview</p>
                 </div>
             </router-link>
@@ -25,27 +26,31 @@
                 <div class="flex gap-3 py-3 px-8"
                     :class="[route.name == 'task' || route.name == 'tasks' ? 'bg-[#F5F5F7] rounded-xl' : '']">
                     <Book :isActive="route.name != 'task'" />
-                    <p class="font-semibold" :class="[route.name != 'task' ? 'text-[#8E92BC]' : 'text-[#141522]']">Task</p>
+                    <p class="font-semibold text-base"
+                        :class="[route.name != 'task' ? 'text-[#8E92BC]' : 'text-[#141522]']">Task</p>
                 </div>
             </router-link>
             <router-link to="/mentors">
                 <div class="flex gap-3 py-3 px-8" :class="[route.name == 'mentors' ? 'bg-[#F5F5F7] rounded-xl' : '']">
                     <User :isActive="route.name != 'mentors'" />
-                    <p class="font-semibold" :class="[route.name != 'mentors' ? 'text-[#8E92BC]' : 'text-[#141522]']">
+                    <p class="font-semibold text-base"
+                        :class="[route.name != 'mentors' ? 'text-[#8E92BC]' : 'text-[#141522]']">
                         Mentors</p>
                 </div>
             </router-link>
             <router-link to="/message">
                 <div class="flex gap-3 py-3 px-8" :class="[route.name == 'message' ? 'bg-[#F5F5F7] rounded-xl' : '']">
                     <Message :isActive="route.name != 'message'" />
-                    <p class="font-semibold" :class="[route.name != 'message' ? 'text-[#8E92BC]' : 'text-[#141522]']">
+                    <p class="font-semibold text-base"
+                        :class="[route.name != 'message' ? 'text-[#8E92BC]' : 'text-[#141522]']">
                         Message</p>
                 </div>
             </router-link>
             <router-link to="/settings">
                 <div class="flex gap-3 py-3 px-8" :class="[route.name == 'settings' ? 'bg-[#F5F5F7] rounded-xl' : '']">
                     <Setting :isActive="route.name != 'settings'" />
-                    <p class="font-semibold" :class="[route.name != 'settings' ? 'text-[#8E92BC]' : 'text-[#141522]']">
+                    <p class="font-semibold text-base"
+                        :class="[route.name != 'settings' ? 'text-[#8E92BC]' : 'text-[#141522]']">
                         Settings</p>
                 </div>
             </router-link>
@@ -75,13 +80,13 @@
                 <div class="flex-1 flex flex-col items-center justify-center">
                     <h2 class="text-md font-semibold">Help Center</h2>
 
-                    <p class="mt-2 text-[12px] tracking-tight">
+                    <p class="mt-2 text-xs font-medium tracking-tight">
                         Having Trouble in Learning.<br>
                         Please contact us for more questions.
                     </p>
                 </div>
 
-                <button class="mt-auto bg-white text-black font-semibold text-[12px] px-4 py-2 rounded-xl font-medium">
+                <button class="mt-auto bg-white text-black font-semibold text-xs px-4 h-10 rounded-xl font-medium">
                     Go To Help Center
                 </button>
             </div>

@@ -54,14 +54,14 @@
                 </div>
             </header>
 
-            <div v-if="$slots['filter']" class="py-2 mb-4 px-6">
+            <div v-if="$slots['filter']" class="mt-1.5 py-2 mb-4 px-6">
                 <slot name="filter">
 
                 </slot>
             </div>
 
             <!-- MAIN CONTENT -->
-            <div class="flex-1 py-4 px-6 overflow-y-auto bg-[rgba(245,245,247,1)] max-[925px]:max-w-full"
+            <div class="flex-1 py-4 px-6 overflow-y-auto bg-[rgba(252,252,252,1)] max-[925px]:max-w-full max-[925px]:border-2 border-solid border-[rgba(245,245,247,1)]"
                 :class="[$slots['sidebar-right'] ? 'max-w-[calc(70dvw-238px)]' : 'max-w-[calc(100dvw-260px)]']">
                 <slot />
             </div>
@@ -69,7 +69,7 @@
 
         <!-- OPTIONAL RIGHT SIDEBAR -->
         <aside v-if="$slots['sidebar-right']"
-            class="w-[30dvw] max-[925px]:w-full bg-[rgba(245,245,247,1)] border-l border-gray-200 p-5 overflow-y-auto min-h-[100dvh]">
+            class="w-[30dvw] max-[925px]:w-full bg-[#F5F5F7] border-l border-gray-200 p-5 overflow-y-auto min-h-[100dvh]">
             <slot name="sidebar-right" />
         </aside>
     </main>

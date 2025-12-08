@@ -22,5 +22,5 @@ const props = defineProps({
     }
 });
 
-const size = computed(() => props.size ?? (props.width >= 768 ? 52 : 32));
+const size = computed(() => props.size ?? (props.width >= 768 ? 52 : 44));
 </script>
